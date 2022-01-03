@@ -1,0 +1,24 @@
+
+
+.main nav{
+    text-align: left;
+}
+
+.main nav ul li{
+    list-style: none;
+}
+
+.main nav ul li a{
+    display: inline-block;
+    text-align: left;
+    
+    color: var(--clickable_color_normal);
+    font-weight: bold;
+    transition: all 0.15s ease;
+}
+
+.main nav ul li a:hover{
+    color: var(--clickable_color_hover);
+    transform: scale(1.1);
+}
+

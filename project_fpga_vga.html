@@ -1,0 +1,110 @@
+<!-- Simple personal projects blog website -->
+<!DOCTYPE html>
+<!-- Path: index.html -->
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Henri's world</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="styleCube.css">
+    </head>
+
+
+    <body>
+        <div class="container">
+            <!-- Navigation bar -->
+            <div class="navbar">
+                <div class="cube3d_scene">
+                    <div class="cube3d">
+                        <div class="front"> <img src="images/front.png"> </div>
+                        <div class="back">  <img src="images/back.png"> </div>               
+                        <div class="right"> <img src="images/right.png"> </div>
+                        <div class="left">  <img src="images/left.png"> </div>
+                        <div class="down">  <img src="images/down.png"> </div>
+                        <div class="top">   <img src="images/top.png"> </div>
+                    </div>
+                </div>
+
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a>
+                        </li>
+                        <li><a href="about.html">About</a>
+                        </li>
+                        <li><a href="projects.html">Projects</a>
+                        </li>
+                    </ul>
+                </nav>
+
+            </div>
+
+            <!-- Main content -->
+            <div class="main">
+                <h1 id="Label">FPGA VGA Graphics Controller</h1>
+                <h4>About</h4>
+
+                <p style = "text-indent:1cm;">
+                    In this project I created a double buffered VGA graphics design using an Xilinx Spartan-7 series FPGA board.
+                    The FPGA board that I have has enough memory for a 1-bit colored 320x240 pixel image. 
+                    All the code was written and tested in Xilinx Vivado using VHDL language.
+                </p>
+                <img src="images/cmod_s7.png" style="max-width:320px;">  
+                <center><b>Cmod S7 - Xilinx Spartan-7 Breadboardable FPGA board</b></center>
+
+                <p>
+                    My targets for this project were to have double buffered graphics and simple interface to the top module.
+                    The controller was to be able to set individual pixels, draw lines and swap buffers with or without clearing the old buffer.
+                </p>
+                
+                <p>
+                    Every draw request goes through FIFO queue inside the VGA Graphics Controller. 
+                    This way the requests can be queued up for the VGA Controller so that VGA Controller can process them when ready.
+                    This queue is processed when buffer is not currently "being swapped". 
+
+                    This takes away for any other part of the system (e.g. CPU) the need to wait for the VGA Controller to finish processing the request.
+                    Only when requesting to swap buffers, the CPU has to wait for the VGA Controller to finish processing old drawing requests.
+                    The need for waiting is best explained by the following example:
+                    CPU is in a loop where it requests to draw a long line and immediately requests to swap buffers. 
+                    In this case CPU is requesting lines and buffer swaps faster than the VGA Controller can process them. 
+                    This leads to anomalies, such as undefined end result on the screen.
+                </p>
+                
+                <p>
+                    Individual pixels are set by pushing the target pixel location along with the color to the FIFO of the VGA Graphics Controller.
+                </p>
+                <div class="video">
+                    <video width="640" height="320" controls>
+                        <source src="videos/vga_single_bit_addressing.mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <center><b>Writing indivudual pixels and then swaping buffer with (with clearing)</b></center>
+                
+                <p>
+                    Lines are drawn using Bresenham's line algorithm. 
+                    The algorithm is used as it does not require any division. And is generally simple. 
+                    Requests for lines are created by pushing the start and end points of the line 
+                    along with the color to the FIFO of the VGA Graphics Controller.
+                </p>
+                <div class="video">
+                    <video width="640" height="320" controls>
+                        <source src="videos/vga_line_drawing.mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <center><b>Drawing lines and then swaping buffer with occasional clearing</b></center>
+                
+                    
+                
+
+                
+                
+            </div>
+
+        </div>
+
+        
+        
+    </body>
+</html>

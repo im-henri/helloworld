@@ -1,0 +1,141 @@
+<!-- Simple personal projects blog website -->
+<!DOCTYPE html>
+<!-- Path: index.html -->
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Henri's world</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="styleCube.css">
+    </head>
+
+
+    <body>
+        <div class="container">
+            <!-- Navigation bar -->
+            <div class="navbar">
+                <div class="cube3d_scene">
+                    <div class="cube3d">
+                        <div class="front"> <img src="images/front.png"> </div>
+                        <div class="back">  <img src="images/back.png"> </div>               
+                        <div class="right"> <img src="images/right.png"> </div>
+                        <div class="left">  <img src="images/left.png"> </div>
+                        <div class="down">  <img src="images/down.png"> </div>
+                        <div class="top">   <img src="images/top.png"> </div>
+                    </div>
+                </div>
+
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a>
+                        </li>
+                        <li><a href="about.html">About</a>
+                        </li>
+                        <li><a href="projects.html">Projects</a>
+                        </li>
+                    </ul>
+                </nav>
+
+            </div>
+
+            <!-- Main content -->
+            <div class="main">
+                <h1 id="Label">Beat Saber Modding (Quest)</h1>
+                <h4>About Beat Saber</h4>
+                
+                <p style = "text-indent:1cm;">
+                    Beat Saber is a music/rythm game where you slash blocks with light-sabers to the beat of a song.
+                    Modding is a big part of the game and it would not be the same without it. 
+                    With mods you can add your own music to the game, customize the game looks, etc.
+                </p>
+                <p>
+                    Beat saber is made in Unity game engine, where the C# is used as a scripting language.
+                    Unity games have been modded before by many people. 
+                </p>
+
+                <h4>Oculus Quest</h4>
+                <p style = "text-indent:1cm;">
+                    Oculus Quest 2 is a standalone VR headset that uses Snapdragon XR2 processor. 
+                    It is a powerful SoC with CPU 6x 1.8GHz and 2x 2.5GHz cores and GPU at 587MHz and up to 1267 GFlops performance. 
+                    However, due to lack of efficient cooling the cpu cores are limited to 1.5GHz and 1.9GHz.
+                </p>
+
+                <h4>Beat Saber Oculus Quest</h4>
+                <p style = "text-indent:1cm;">
+                    The game itself is built on Unity game engine using C# but due to hardware limitation the Quest version of the game
+                    is compiled with IL2CPP(Intermediate Language To C++) meaning that the mods "must" be created with C++.
+                    The modding tools are created and maintained by modders community.
+                    Basic principle behind modding is that function calls are interrupted by your custom code, 
+                    either before or after the original function call.
+                </p>
+                
+                <!-- MOD -->
+
+                <h1 id="SubLabel">Finger Saber</h1>
+                <h4>Latest mod</h4>
+                <p style = "text-indent:1cm;">
+                    In this mod I use Oculus Quest hand-tracking API to set the position of the saber to the tips of your fingers.
+                    The game world is shrinked down to accommodate for smaller saber movement.
+                </p>
+                <p>
+                    Biggest issue that I faced was memory leak that I could not explain. But that is to be expected when making unofficial mods for a game
+                    where the tools are not very mature. The issue was the hand-tracking container that was created into Unity scene. 
+                    Most likely the garbage collector was too aggressive and deleted the hand-tracking container, eventhough it was set to be kept alive,
+                    when a game scene is changed.
+                    My solution to this was to delete the hand-tracking container before scene changed and re-create it when a scene is loaded.
+                </p>
+                
+                <center>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/248STEHsC04" title="YouTube video player" 
+                        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                    </iframe>
+                </center>
+                <center><b>Gameplay demo</b></center>
+
+                <a class="hyperLink" href="https://github.com/im-henri/FingerSaber">Github source</a>
+
+                <!-- MOD -->
+
+                <h1 id="SubLabel">Flail Saber</h1>
+                <h4>Nunchucks / flails mod</h4>
+                <p style = "text-indent:1cm;">
+                    In this mod the sabers are attached to rope. The rope is simulated using Verlet integration, and it is highly customizable. 
+                    By changing parameters its possible to make rope more elastic or more rigid, longer or shorter, etc.
+                </p>
+                <p>
+                    In Verlet integration the rope is simulated by moving the rope nodes
+                    by changing their position with respect to the forces acting on them. 
+                    At this point the nodes "do not see" other nodes.
+
+                    After this, constrainted are applied multiple times (10-100 times). 
+                    Each time rope points are moved slighlty to fit their constraints, i.e., the rope is "stretched" or "compressed"
+                    to fit the length constraint. 
+                </p>
+                <video controls>
+                    <source src="videos/flail_saber.mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <center><b>Gameplay demo</b></center>
+
+                <a class="hyperLink" href="https://github.com/im-henri/FlailSaber">Github source</a>
+
+                <!-- MOD -->
+
+                <h1 id="SubLabel">Qonsistent Saber Colors</h1>
+                <h4>Simple coloring mod</h4>
+                <p style = "text-indent:1cm;">
+                    In this simple mod, colors of the menu sabers reflect your in-song colors.
+                </p>
+                <img class="gif_video" src="images/qonsistentSaberColors.gif"/>
+                <center><b>Demo</b></center>
+                
+                <a class="hyperLink" href="https://github.com/im-henri/QonsistentSaberColors">Github source</a>
+               
+            </div>
+
+        </div>
+
+        
+    </body>
+</html>

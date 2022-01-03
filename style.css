@@ -1,0 +1,153 @@
+:root {
+    --main_font_size: 20px;
+    --topic_font_size: 48px;
+    --subtopic_font_size: 40px;
+
+    /* Colors */
+    --default_text_color: #ffffff;
+
+    --topic_title_color: #ec8472;
+    --topic_title_shadow_color: #7e2819;
+    
+    --bg_gradient_top: #1b1b19;
+    --bg_gradient_bottom: #2b2b27;
+
+    --clickable_color_normal: #e9e2db;
+    --clickable_color_hover: #f3b894;
+
+    /* Font sizes and block widths */
+    --nav_bar_font_size: 26px;
+    --nav_bar_spacing_extra: 20px;
+
+}
+
+html{
+    /* Gradient background */
+    background: linear-gradient(var(--bg_gradient_top), var(--bg_gradient_bottom));
+    /* Full height */
+    height: 100%;
+    /* Fixes background scrolling */
+    background-attachment: fixed;
+    /* Setting base color as scolling on phone seems to be buggy */
+    background-color: #2b2b27;
+    
+}
+body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: var(--main_font_size);
+    color: var(--default_text_color);
+}
+
+.container{
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 70px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.navbar{
+    display: flex;
+    margin-right: 0px;
+    text-align: right;
+}
+.navbar nav{
+    flex: 1;
+    text-align: right;
+}
+.navbar nav ul li{
+    list-style: none;
+    display: inline-block;
+}
+.navbar nav ul li a{
+    margin-left: var(--nav_bar_spacing_extra);
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    color: var(--clickable_color_normal);
+    font-size: var(--nav_bar_font_size);
+    font-weight: bold;
+    
+    transition: all 0.2s ease;
+}
+.navbar nav ul li a:hover{
+    color: var(--clickable_color_hover); 
+    transform: scale(1.2);
+}
+
+.main .hyperLink{
+    margin-left: var(--nav_bar_spacing_extra);
+    display: inline-block;
+    text-decoration: underline;
+    text-align: center;
+    color: var(--clickable_color_normal);
+    font-size: var(--nav_bar_font_size);
+    font-weight: bold;
+    
+}
+
+.main .hyperLink:hover{
+    color: var(--clickable_color_hover);
+    transform: scale(1.2);
+}
+
+.main #Label{
+    font-size: var(--topic_font_size);
+    color: var(--topic_title_color); 
+    text-shadow: 2px 2px 4px var(--topic_title_shadow_color);
+}
+
+.main #SubLabel{
+    font-size: var(--subtopic_font_size);
+    color: var(--topic_title_color); 
+    text-shadow: 2px 2px 4px var(--topic_title_shadow_color);
+}
+
+#TypeWriter_HelloWorld{
+    /* 
+    font-size: var(--topic_font_size);
+    */
+    color: var(--topic_title_color); 
+    text-shadow: 2px 2px 4px var(--topic_title_shadow_color);
+}
+
+video {
+    display: block;
+    margin: auto;
+
+    width: 100%;
+    max-width: 400px;
+}
+
+iframe {
+    display: block;
+    margin: auto;
+
+    width: 100%;
+    max-width: 400px;
+}
+
+.gif_video{
+    display: block;
+    margin: auto;
+
+    width: 100%;
+    max-width: 400px;
+}
+
+
+/* Center all-images */
+.main img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto; 
+}
+
+.inline_block_me{
+    display: inline-block;
+}
+
