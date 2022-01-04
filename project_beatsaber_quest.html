@@ -63,7 +63,7 @@
                     However, due to lack of efficient cooling the cpu cores are limited to 1.5GHz and 1.9GHz.
                 </p>
 
-                <h2>Beat Saber Oculus Quest</h2>
+                <h2>Beat Saber Oculus Quest Modding</h2>
                 <p style = "text-indent:1cm;">
                     The game itself is built on Unity game engine using C# but due to hardware limitation the Quest version of the game
                     is compiled with IL2CPP(Intermediate Language To C++) meaning that the mods "must" be created with C++.
@@ -71,13 +71,28 @@
                     Basic principle behind modding is that function calls are interrupted by your custom code, 
                     either before or after the original function call.
                 </p>
+                <p>
+                    When choosing a method to hook, it is important to know what the function does.
+                    Unfortunately, this information is not available. 
+                    On the PC version of the game, we can luckily use a tool called
+                     <a class="hyperLink_inText" href="https://github.com/dnSpy/dnSpy">dnSpy</a>.
+                    It is a powerful tool for .NET programs.
+                    This tool allows us to find exact line-by-line definition of function/method.
+                    Luckily, in the Quest version of the game the functions are mostly the same.
+                </p>
                 
                 <!-- MOD -->
 
                 <h1 id="SubLabel">Finger Saber</h1>
                 <h2>Latest mod</h2>
                 <p style = "text-indent:1cm;">
-                    In this mod I use Oculus Quest hand-tracking API to set the position of the saber to the tips of your fingers.
+                    In this mod I used Oculus Quest hand-tracking API to 
+                    set the position of the saber to the tips of your fingers.
+
+                    This meant that I had to find a way to initialize hand-tracking API from code.
+                    I decided to first create a new Unity project to get the hand-tracking API working.
+                    Once I got the basics of 
+
                     The game world is shrinked down to accommodate for smaller saber movement.
                 </p>
                 <p>

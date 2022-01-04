@@ -109,6 +109,20 @@ body{
     transform: scale(1.1);
 }
 
+.hyperLink_inText{
+    display: inline-block;
+    text-decoration: underline;
+    text-align: center;
+    font-weight: bold;
+    color: var(--clickable_color_normal);
+    font-size: var(--main_font_size);
+    transition: all 0.1s ease;
+}
+.hyperLink_inText:hover{
+    color: var(--clickable_color_hover);
+    transform: scale(1.1);
+}
+
 .main #Label{
     font-size: var(--topic_font_size);
     color: var(--topic_title_color); 
