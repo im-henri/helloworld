@@ -68,8 +68,10 @@
                     This way the requests can be queued up for the VGA Controller so that VGA Controller can process them when ready.
                     This queue is processed when buffer is not currently "being swapped". 
 
-                    This takes away for any other part of the system (e.g. CPU) the need to wait for the VGA Controller to finish processing the request.
-                    Only when requesting to swap buffers, the CPU has to wait for the VGA Controller to finish processing old drawing requests.
+                    This takes away for any other part of the system (e.g. CPU) the need to wait for 
+                    the VGA Controller to finish processing the request.
+                    Only when requesting to swap buffers, the CPU has to wait for the VGA Controller 
+                    to finish processing old drawing requests.
                     The need for waiting is best explained by the following example:
                     CPU is in a loop where it requests to draw a long line and immediately requests to swap buffers. 
                     In this case CPU is requesting lines and buffer swaps faster than the VGA Controller can process them. 

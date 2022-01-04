@@ -53,13 +53,13 @@
                 </p>
                 <p>
                     Beat saber is made in Unity game engine, where the C# is used as a scripting language.
-                    Unity games have been modded before by many people. 
+                    <!-- Unity games have been modded before by many people. -->
                 </p>
 
                 <h2>Oculus Quest</h2>
                 <p style = "text-indent:1cm;">
                     Oculus Quest 2 is a standalone VR headset that uses Snapdragon XR2 processor. 
-                    It is a powerful SoC with CPU 6x 1.8GHz and 2x 2.5GHz cores and GPU at 587MHz and up to 1267 GFlops performance. 
+                    It is a powerful SoC with CPU 6x 1.8GHz and 2x 2.5GHz cores and GPU at 587MHz with up to 1267 GFlops performance. 
                     However, due to lack of efficient cooling the cpu cores are limited to 1.5GHz and 1.9GHz.
                 </p>
 
@@ -81,11 +81,19 @@
                     The game world is shrinked down to accommodate for smaller saber movement.
                 </p>
                 <p>
-                    Biggest issue that I faced was memory leak that I could not explain. But that is to be expected when making unofficial mods for a game
-                    where the tools are not very mature. The issue was the hand-tracking container that was created into Unity scene. 
-                    Most likely the garbage collector was too aggressive and deleted the hand-tracking container, eventhough it was set to be kept alive,
-                    when a game scene is changed.
-                    My solution to this was to delete the hand-tracking container before scene changed and re-create it when a scene is loaded.
+                    Biggest issue that I faced was memory leak that I could not explain. 
+                    This is to be expected when making unofficial mods for a game
+                    where the tools are not very mature nor well documented. 
+
+                    The memory leak issue was caused by hand-tracking container. 
+                    This container was simply an Unity gameObject that contained all neccecary 
+                    gameObjects and scripts. 
+
+                    In Unity you can set a gameObjects to persist through the changes of scenes.
+                    For some reason hand-tracking container did no properly persist through the scene changes.
+                    
+                    My solution to this was to delete the hand-tracking container 
+                    before scene changed and re-create it when a scene is loaded.
                 </p>
                 
                 <center>
