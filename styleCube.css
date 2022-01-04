@@ -7,20 +7,28 @@
     width: var(--cubeSize);
     height: var(--cubeSize);
     margin-bottom: var(--cubeSize);
-    border: 2px solid black;
+    outline: 5px solid var(--clickable_color_normal);
     background-color: maroon;
 
+    position: fixed;
+
+    transition: all 0.15s ease;
     /* Center the cube */
     margin-top: 25px;
-
+    margin-left: auto;
 }
+
+.navbar .cube3d_scene:hover{
+    outline: 7px solid var(--clickable_color_hover);
+}
+
 .navbar .cube3d{
     width: 100%;
     height: 100%;
     position: relative;
     transform-style: preserve-3d;
 
-    animation: cube3dKeyframes 1.6s infinite;
+    animation: cube3dKeyframes 2.5s infinite;
     animation-timing-function: linear;
     
     transition: all 0.4s ease;
@@ -28,7 +36,6 @@
 
 .navbar .cube3d:hover{
     animation-play-state: paused;
-    
 }
 
 .navbar .cube3d div{
@@ -80,19 +87,19 @@
 
 
     0% {
-        transform: scale(1.0) rotate3d(1,1,1, 0deg);
+        transform: scale(1.0) rotate3d(2,1,5, -20deg)   rotate3d(-1,5,1, 0deg)             ;
     }
 
     50% {
-        transform: scale(0.4) rotate3d(1,1,1, calc(180deg * 1));
+        transform: scale(0.4)  rotate3d(2,1,5, -20deg)   rotate3d(-1,5,1, calc(180deg * 1)) ;
 
     }
     65% {
-        transform: scale(0.7) rotate3d(1,1,1, calc(240deg * 1));
+        transform: scale(0.7)  rotate3d(2,1,5, -20deg)   rotate3d(-1,5,1, calc(240deg * 1)) ;
 
     }
     100% {
-        transform: scale(1.0) rotate3d(1,1,1, calc(360deg * 1));
+        transform: scale(1.0)  rotate3d(2,1,5, -20deg)   rotate3d(-1,5,1, calc(360deg * 1)) ;
     }
     
 }

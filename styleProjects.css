@@ -4,19 +4,24 @@
     text-align: left;
 }
 
-.main nav ul li{
+.main nav ul{
     list-style: none;
+    padding-left: 0px;
 }
-
+.main nav ul li{
+    margin-bottom: 1.1cm;
+}
+.main nav ul li p{
+    margin-top: 0.25cm;
+    margin-left: 1cm;
+}
 .main nav ul li a{
     display: inline-block;
     text-align: left;
-    
     color: var(--clickable_color_normal);
     font-weight: bold;
-    transition: all 0.15s ease;
+    transition: all 0.10s ease;
 }
-
 .main nav ul li a:hover{
     color: var(--clickable_color_hover);
     transform: scale(1.1);

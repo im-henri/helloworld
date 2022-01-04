@@ -37,4 +37,6 @@ function typeWriter() {
 
 
 
-window.onload = typeWriter_DelayedStart;
+window.addEventListener('load', (event) => {
+    typeWriter_DelayedStart();
+});
