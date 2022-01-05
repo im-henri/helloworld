@@ -123,6 +123,11 @@ body{
     transform: scale(1.1);
 }
 
+/* In text (main text) */
+.main ul li{
+    margin-bottom: 0.15cm;
+}
+
 .main #Label{
     font-size: var(--topic_font_size);
     color: var(--topic_title_color); 

@@ -55,8 +55,6 @@ function initialize(){
             //top.src   = "images/cubeBack.png";
             //down.src  = "images/cubeBack.png";
         }
-        
-        
     });
     cubeScene.addEventListener("mouseleave", function(){
         cubeScene.style.opacity = cubeSceneOpacity;

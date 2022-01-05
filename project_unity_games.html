@@ -1,0 +1,174 @@
+<!-- Simple personal projects blog website -->
+<!DOCTYPE html>
+<!-- Path: index.html -->
+<html lang="en">
+    <head>
+        <script src="cubeScript.js"></script>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Henri's world</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="styleCube.css">
+    </head>
+
+
+    <body>
+        <div class="container">
+            <!-- Navigation bar -->
+            <div class="navbar">
+                <div class="cube3d_scene">
+                    <div class="cube3d">
+                        <div class="front"> <img src="images/cubeFace.png">  </div>
+                        <div class="back">  <img src="images/cubeFace.png">  </div>               
+                        <div class="right"> <img src="images/cubeFace.png">  </div>
+                        <div class="left">  <img src="images/cubeFace.png">  </div>
+                        <div class="down">  <img src="images/cubeFace.png">  </div>
+                        <div class="top">   <img src="images/cubeFace.png">  </div>
+                    </div>
+                </div>
+
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a>
+                        </li>
+                        <li><a href="about.html">About</a>
+                        </li>
+                        <li><a href="projects.html">Projects</a>
+                        </li>
+                    </ul>
+                </nav>
+
+            </div>
+
+            <!-- Main content -->
+            <div class="main">
+                <h1 id="Label">Unity Games</h1>
+                <h2>About</h2>
+                <p>
+                    This is a list of games I have made using Unity.
+                    Note that none of the games are actually fully finished.
+                </p>
+
+                <h1 id="SubLabel">VR Physics Skateboarding</h1>
+                <p>
+                    Main idea behind this project was to see if and how well would 
+                    physics based skateboarding work, since hands act as feet.
+                    To my surprise it worked quite well. 
+                    Few things that I would like to improve:
+                    <ul>
+                        <li>
+                            Hands (feet) going through physical objects 
+                            when physical hands go too far into objects.
+                            This could be done by reducing the force of the feet
+                            towards the normal of current collision surface,
+                            when feet are currently colliding.
+                        </li>
+                        <li>
+                            Add a system that allows player to actually roll 
+                            and turn on the skateboard.
+                        </li>
+                    </ul>
+                </p>
+                <h2>Proof of concept</h2>
+                
+                <p style = "text-indent:1cm;">
+                    Skateboarding with hands as feet. Everything object is physics based 
+                    or in Unity terms has a rigidbody on it.
+                    This raises a problem of how feet should follow the physical hands. 
+                    Essentially shoes/feet are "trying" to achieve the vr-controllers Transform by applying force themselves. 
+                    This means that shoes act as pure physics objects and will collide with any other Collider.
+                </p>
+
+                <center>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/G6JhOWZ1ymU" title="YouTube video player" 
+                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; 
+                    encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                </iframe>
+                </center>
+                <center><b class="imgvid_title">Gameplay demo</b></center>
+
+               
+                <h1 id="SubLabel">Stickman Fighting</h1>
+
+                <p>
+                    Local multiplayer (single screen) stickman fighting game made with Unity.
+                    Featuring:
+                    <ul>
+                        <li>
+                            Physics based characters. All of the joints have PID-controller that adds force
+                            such that the joints will reach their target rotation.
+                            This allows physics based animations (running/walking/standing) and hand movement.
+                        </li>
+                        <li>
+                            Multiple players, 1 with keyboard-and-mouse and technically unlimited gamepad players.
+                        </li>
+                        <li>
+                            Customizeable looks (skin, hair). Easy to add new skins and hair.
+                        </li>
+                        <li>
+                            Different weapons such as swords, handguns, automatic rifles, granades, etc.
+                        </li>
+                        <li>
+                            Physics based character movement. (Animations (walking/running) and hand movement)
+                        </li>
+                        
+                    </ul>
+                <center>    
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/IOcGff9mtQE" title="YouTube video player" 
+                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; 
+                    encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+                </center>
+                <center><b class="imgvid_title">Gameplay demo</b></center>
+
+
+
+                <h1 id="SubLabel">MediaPipe Hand tracking</h1>
+
+                <p style>
+                    In this project I made a hand tracking application using 
+                    <a class="hyperLink_inText" href="https://google.github.io/mediapipe/">MediaPipe</a>.
+                    It a google's open source project that enabled camera based tracking using machine learning.
+                </p>
+                <p>
+                    MediaPipe is natively available as example for C++ and Python. As Unity uses C# I had to 
+                    come up with a way to use it in Unity.
+                    Unity supports a feature called Native plug-ins that allows to call library functions 
+                    created in C/C++ and objective-c, from C#.
+                    However I did not go with this option and instead chose to use the API in Python,
+                    and send the results over to C#, as it was the quickest way to get it working.
+                </p>
+                <p>
+                    Using MediaPipe in python I was able to track finger joint locations in 3D space.
+                    The results were combined into ordered set of floats, 
+                    that were sent to Unity over TCP socket, in binary format. 
+                    The floats were in groups of three, representing the x,y,z coordinates of the joint.
+                    On the Unity side further processing was done in order to get joint rotations. 
+                    This was done by calculating palm normal and using that 
+                    as basis for other joint rotation calculations.
+                </p>
+                <p>
+                    On the Python side I set up two threads, one running the MediaPipe's hand-tracking 
+                    and another for sending the results over to Unity. Using two threads speed up the
+                    overall tracking process. The limiting factor was in fact the ML model,
+                    as opposed to communication or camera speed. Im also guessing that using c-based language
+                    would not speed up the ML model forward pass, because ML API's,
+                    including tensorflow, are using c-based language as backend anyway.
+                </p>
+
+                     
+                <center>    
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/R6jZRpoZbQo" 
+                    title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; 
+                    clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                </iframe>
+                </center>
+                <center><b class="imgvid_title">Demo</b></center>
+
+        </div>
+
+        
+    </body>
+</html>
