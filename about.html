@@ -5,6 +5,9 @@
     <head>
         <script src="cubeScript.js"></script>
 
+        <script src="prism.js"></script>
+        <link rel="stylesheet" href="prism.css">
+
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Henri's world</title>
@@ -45,21 +48,31 @@
             <div class="main">
                 <h1 id="Label">About</h1>
                 <p> Hi, I'm Henri. An Electrical Engineering student 
-                    that likes to write code.
+                    that likes to code.
                 </p>
 
                 <h2> About the site</h2>
                 <p>
                     Prior to creating this site I had no experience in web-development.
                     This site was created in single day, while learning the basics of
-                    HTML, CSS and JavaScript. (Text into projects were added later)
+                    HTML, CSS and JavaScript. (Additional text/projects were added later.)
                 </p>
+                <pre class="line-numbers"><code class="language-c">
+                    // Since HTML/CSS does not provide any syntax highlighting,
+                    // the only external library used is prism.js
+                    // Source: https://prismjs.com/
+
+                    // This allows nice syntax highlighting of code
+                    #include &lt;stdio.h&gt;
+                    int main(argc, argv) {
+                        return 0;
+                    }
+                </code></pre>
+
                 <p>
                     As I have no work experience, the purpose of this site 
-                    is to show some of the projects I have done in the past.
-                    <!--
-                        and that im capable of learning new things relatively fast.
-                    -->
+                    is to show some of the projects I have done in the past
+                    and that im capable of learning new things relatively fast.        
                 </p>
             </div>
 

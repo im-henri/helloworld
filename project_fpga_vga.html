@@ -5,6 +5,9 @@
     <head>
         <script src="cubeScript.js"></script>
 
+        <script src="prism.js"></script>
+        <link rel="stylesheet" href="prism.css">
+
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Henri's world</title>
@@ -57,6 +60,13 @@
                 </p>
                 <img src="images/cmod_s7.png" style="max-width:240px;">  
                 <center><b class="imgvid_title">Cmod S7 - Xilinx Spartan-7 Breadboardable FPGA board</b></center>
+                
+                <p>
+                    FPGA board is hooked up as shown below. 
+                    One end of VGA cable was cut and jumper wires were soldered to the ends of the wires.
+                </p>
+                <img src="images/cmod_s7_vga_connected.jpg" style="max-width:500px;">  
+                <center><b class="imgvid_title">Cmod S7 - Xilinx Spartan-7 Breadboardable FPGA board</b></center>
 
                 <p>
                     My targets for this project were to have double buffered graphics and simple interface to the top module.
@@ -91,7 +101,7 @@
                 
                 <p>
                     Lines are drawn using Bresenham's line algorithm. 
-                    The algorithm is used as it does not require any division. And is generally simple. 
+                    The algorithm chosen as it does not require any division. 
                     Requests for lines are created by pushing the start and end points of the line 
                     along with the color to the FIFO of the VGA Graphics Controller.
                 </p>
@@ -103,7 +113,76 @@
                 </div>
                 <center><b class="imgvid_title">Drawing lines and then swaping buffer with occasional clearing</b></center>
                 
+                <h2>Putting it together</h2>
+                <div class="video">
+                    <video width="640" height="240" controls>
+                        <source src="videos/VGA_graphics_top.mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <center><b class="imgvid_title">Example: Drawing pixels/lines, flipping with/without clearing</b></center>
+                
+                <p>
+                    After line- and pixel drawing worked independently, 
+                    they were combined into single module.
+
+
+                    This module has another FIFO queue (vga_req_fifo) that takes drawing requests, 
+                    either pixel or line requests.
+                    Format of the data (vga_req_fifo_din) is following:
+                    <ul>
+                        <li>
+                            (38 downto 37) --- type (pixel="00" and line="01")
+                        </li>
+                        <li>
+                            (36 downto 28) --- x0
+                        </li>
+                        <li>
+                            (27 downto 20) --- y0
+                        </li>
+                        <li>
+                            (19 downto 11) --- x1
+                        </li>
+                        <li>
+                            (10 downto  3) ---- y1
+                        </li>
+                        <li>
+                            (2 downto  0) ----- color
+                        </li>
+                    </ul>
                     
+                    When the request is a pixel request, x0 and y0 is used. 
+                    
+                </p>
+    
+                <p>
+                    Below is the top module entity of the VGA_Graphics_top.vhdl, 
+                    that can easily be interfaced with any other module, such as CPU.
+                </p>
+                <pre class="line-numbers" ><code class="language-vhdl">
+                entity VGA_Graphics_top is
+                Port (  
+                    -- Inputs
+                    fpga_clk             : in STD_LOGIC; -- synthesizing VGA clk
+                    cpu_clk              : in STD_LOGIC;  
+                    
+                    flip_req             : in  STD_LOGIC; -- MUST BE PULSE
+                    destructive_read_req : in  STD_LOGIC; -- flip and clear rgb_buff
+
+                    vga_req_fifo_din     : in  STD_LOGIC_VECTOR(38 DOWNTO 0);
+                    vga_req_fifo_wr_en   : in  STD_LOGIC;
+                    
+                    -- Outputs           
+                    flip_in_progress_out : out STD_LOGIC;
+                    
+                    Colors               : out STD_LOGIC_VECTOR(2 downto 0);
+                    HSync                : out STD_LOGIC;
+                    VSync                : out STD_LOGIC
+                );
+                end VGA_Graphics_top;
+                </code></pre>
+
+
                 
 
                 
