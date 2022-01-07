@@ -178,7 +178,10 @@ iframe {
 .main img{
     display: block;
     margin-left: auto;
-    margin-right: auto; 
+    margin-right: auto;
+    margin-bottom: 0.15cm;
+    
+    max-width: 100%;
 }
 
 .main {
@@ -188,8 +191,8 @@ iframe {
     margin-left: auto;
     margin-right: auto;
     /* padding-edges: 0px; */
-    padding-left: 5%;
-    padding-right: 5%;
+    padding-left: 4%;
+    padding-right: 4%;
     
 }
 

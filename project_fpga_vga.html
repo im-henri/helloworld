@@ -58,14 +58,14 @@
                     The FPGA board that I have has enough memory for a 1-bit colored 320x240 pixel image. 
                     All the code was written and tested in Xilinx Vivado using VHDL language.
                 </p>
-                <img src="images/cmod_s7.png" style="max-width:240px;">  
+                <img src="images/cmod_s7.png" style="max-width:50%;">  
                 <center><b class="imgvid_title">Cmod S7 - Xilinx Spartan-7 Breadboardable FPGA board</b></center>
                 
                 <p>
                     FPGA board is hooked up as shown below. 
                     One end of VGA cable was cut and jumper wires were soldered to the ends of the wires.
                 </p>
-                <img src="images/cmod_s7_vga_connected.jpg" style="max-width:500px;">  
+                <img src="images/cmod_s7_vga_connected.jpg">  
                 <center><b class="imgvid_title">Cmod S7 - Xilinx Spartan-7 Breadboardable FPGA board</b></center>
 
                 <p>
@@ -74,9 +74,11 @@
                 </p>
                 
                 <p>
-                    Every draw request goes through FIFO queue inside the VGA Graphics Controller. 
-                    This way the requests can be queued up for the VGA Controller so that VGA Controller can process them when ready.
+                    Every draw request goes through write queue (FIFO) inside the VGA Graphics controller. 
+                    This way the requests can be queued up for the VGA Controller so that 
+                    VGA Controller can process them when ready.
                     This queue is processed when buffer is not currently "being swapped". 
+                
 
                     This takes away for any other part of the system (e.g. CPU) the need to wait for 
                     the VGA Controller to finish processing the request.
@@ -114,6 +116,9 @@
                 <center><b class="imgvid_title">Drawing lines and then swaping buffer with occasional clearing</b></center>
                 
                 <h2>Putting it together</h2>
+                <img src="images/fgpa_vga_block_diagram.png">  
+                <center><b class="imgvid_title">Rough diagram of the VGA Graphics Controller</b></center>
+
                 <div class="video">
                     <video width="640" height="240" controls>
                         <source src="videos/VGA_graphics_top.mp4">
@@ -127,7 +132,7 @@
                     they were combined into single module.
 
 
-                    This module has another FIFO queue (vga_req_fifo) that takes drawing requests, 
+                    This module has another FIFO queue (Draw Request Queue) that takes drawing requests, 
                     either pixel or line requests.
                     Format of the data (vga_req_fifo_din) is following:
                     <ul>
@@ -135,10 +140,10 @@
                             (38 downto 37) --- type (pixel="00" and line="01")
                         </li>
                         <li>
-                            (36 downto 28) --- x0
+                            (36 downto 28) --- x0 (Used for pixel requests x coordinate)
                         </li>
                         <li>
-                            (27 downto 20) --- y0
+                            (27 downto 20) --- y0 (Used for pixel requests y coordinate)
                         </li>
                         <li>
                             (19 downto 11) --- x1
@@ -150,9 +155,15 @@
                             (2 downto  0) ----- color
                         </li>
                     </ul>
-                    
-                    When the request is a pixel request, x0 and y0 is used. 
-                    
+                </p>
+                <p>
+                    I used 2-bit type for possible expansion of the functionality.
+                    For example, sprite drawing from memory, x0 and y0 could be
+                    used for location to draw sprite to and x1, y1 and color could be used 
+                    as memory location from where to start drawing sprite.
+                    Sprite end could have specific binary value to indicate end of sprite.
+                    This type of drawing would mean that even if the sprite has large bounding box,
+                    it only takes up space in memory by the amount of non-zero pixels.
                 </p>
     
                 <p>
