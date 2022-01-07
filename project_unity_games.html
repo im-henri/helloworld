@@ -73,10 +73,10 @@
                 <h2>Proof of concept</h2>
                 
                 <p style = "text-indent:1cm;">
-                    Skateboarding with hands as feet. Everything object is physics based 
-                    or in Unity terms has a rigidbody on it.
-                    This raises a problem of how feet should follow the physical hands. 
-                    Essentially shoes/feet are "trying" to achieve the vr-controllers Transform by applying force themselves. 
+                    Skateboarding with hands as feet. Every object is physics based 
+                    or in Unity terms has a RigidBody component on it.
+                    This raises a problem of how should feet should follow the physical hands. 
+                    Essentially shoes/feet are trying to achieve the vr-controllers Transform by applying force themselves. 
                     This means that shoes act as pure physics objects and will collide with any other Collider.
                 </p>
 
@@ -109,9 +109,6 @@
                         <li>
                             Different weapons such as swords, handguns, automatic rifles, granades, etc.
                         </li>
-                        <li>
-                            Physics based character movement. (Animations (walking/running) and hand movement)
-                        </li>
                         
                     </ul>
                 <center>    
@@ -130,14 +127,15 @@
                 <p style>
                     In this project I made a hand tracking application using 
                     <a class="hyperLink_inText" href="https://google.github.io/mediapipe/">MediaPipe</a>.
-                    It a google's open source project that enabled camera based tracking using machine learning.
+                    MediaPipe is google's open source project that enables
+                    camera based tracking using machine learning.
                 </p>
                 <p>
-                    MediaPipe is natively available as example for C++ and Python. As Unity uses C# I had to 
+                    MediaPipe is natively available for C++ and Python. As Unity uses C# I had to 
                     come up with a way to use it in Unity.
                     Unity supports a feature called Native plug-ins that allows to call library functions 
                     created in C/C++ and objective-c, from C#.
-                    However I did not go with this option and instead chose to use the API in Python,
+                    However I did not this route and instead chose to use the API in Python,
                     and send the results over to C#, as it was the quickest way to get it working.
                 </p>
                 <p>
@@ -156,6 +154,7 @@
                     as opposed to communication or camera speed. Im also guessing that using c-based language
                     would not speed up the ML model forward pass, because ML API's,
                     including tensorflow, are using c-based language as backend anyway.
+                    What would speed up the forward pass would be to use GPU version of the API.
                 </p>
 
                      
