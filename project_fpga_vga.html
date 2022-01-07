@@ -74,10 +74,26 @@
                 </p>
                 
                 <p>
+                    Double buffering is done in non-conventional way. 
+                    The VGA Controller has two buffers, one for drawing (rgb-buff)
+                    and one for displaying (vga-buff).
+                    The drawing buffer is True Dual Port Ram meaning that 
+                    it has two sides, each in different clock domain, which can be 
+                    accessed and written to independently.
+
+                    The display buffer is a single side, i.e., ordinary Ram memory.
+
+                    When "swapping buffers", or flipping as I call it in this project,
+                    the content of rgb-buffer is copied to the vga-buffer.
+                    When flipping with destructive_read_req, zeros are written to rgb-buff
+                    while copying the contents to vga-buff.
+                </p>
+
+                <p>
                     Every draw request goes through write queue (FIFO) inside the VGA Graphics controller. 
                     This way the requests can be queued up for the VGA Controller so that 
                     VGA Controller can process them when ready.
-                    This queue is processed when buffer is not currently "being swapped". 
+                    This queue is processed when VGA controller is currently not flipping. 
                 
 
                     This takes away for any other part of the system (e.g. CPU) the need to wait for 
@@ -86,9 +102,11 @@
                     to finish processing old drawing requests.
                     The need for waiting is best explained by the following example:
                     CPU is in a loop where it requests to draw a long line and immediately requests to swap buffers. 
-                    In this case CPU is requesting lines and buffer swaps faster than the VGA Controller can process them. 
+                    In this case CPU is requesting lines and flips faster than the VGA Controller can process them. 
                     This leads to anomalies, such as undefined end result on the screen.
                 </p>
+
+                
                 
                 <p>
                     Individual pixels are set by pushing the target pixel location along with the color to the FIFO of the VGA Graphics Controller.
@@ -167,8 +185,10 @@
                 </p>
     
                 <p>
-                    Below is the top module entity of the VGA_Graphics_top.vhdl, 
-                    that can easily be interfaced with any other module, such as CPU.
+                    Below is also the top module entity of the VGA_Graphics_top.vhdl.
+                    It met the criteria of having simple interface to the top module.
+                    The next step would be to create simple CPU and 
+                    connect this graphics module to it.
                 </p>
                 <pre class="line-numbers" ><code class="language-vhdl">
                 entity VGA_Graphics_top is
