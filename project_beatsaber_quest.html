@@ -51,34 +51,36 @@
                     Modding is a big part of the game and it would not be the same without it. 
                     With mods you can add your own music to the game, customize the game looks, etc.
                 </p>
-                <p>
-                    Beat saber is made in Unity game engine, where the C# is used as a scripting language.
-                    <!-- Unity games have been modded before by many people. -->
-                </p>
-
+                
+                <!--
                 <h2>Oculus Quest</h2>
                 <p style = "text-indent:1cm;">
                     Oculus Quest 2 is a standalone VR headset that uses Snapdragon XR2 processor. 
                     It is a powerful SoC with CPU 6x 1.8GHz and 2x 2.5GHz cores and GPU at 587MHz with up to 1267 GFlops performance. 
                     However, due to lack of efficient cooling the cpu cores are limited to 1.5GHz and 1.9GHz.
                 </p>
+                -->
 
                 <h2>Beat Saber Oculus Quest Modding</h2>
                 <p style = "text-indent:1cm;">
                     The game itself is built on Unity game engine using C# but due to hardware limitation the Quest version of the game
-                    is compiled with IL2CPP(Intermediate Language To C++) meaning that the mods "must" be created with C++.
+                    is compiled with IL2CPP(Intermediate Language To C++) meaning that the mods "have" be created in C++.
                     The modding tools are created and maintained by modders community.
-                    Basic principle behind modding is that function calls are interrupted by your custom code, 
-                    either before or after the original function call.
+                    
                 </p>
                 <p>
+                    Basic principle behind modding is that 
+                    original function calls are interrupted by your custom code, 
+                    either before or after the original function call.
                     When choosing a method to hook, it is important to know what the function does.
                     Unfortunately, this information is not available. 
                     On the PC version of the game, we can luckily use a tool called
                      <a class="hyperLink_inText" href="https://github.com/dnSpy/dnSpy">dnSpy</a>.
                     It is a powerful tool for .NET programs.
-                    This tool allows us to find exact line-by-line definition of function/method.
+                    This tool allows to find exact line-by-line definition of function/method.
                     Luckily, in the Quest version of the game the functions are mostly the same.
+                    However, due to IL2CPP some of the original sources get stripped away.
+                    This means that not all of the functionality of Unity game engine is available.
                 </p>
                 
                 <!-- MOD -->
@@ -88,15 +90,27 @@
                 <p style = "text-indent:1cm;">
                     In this mod I used Oculus Quest hand-tracking API to 
                     set the position of the saber to the tips of your fingers.
-
-                    This meant that I had to find a way to initialize hand-tracking API from code.
-                    I decided to first create a new Unity project to get the hand-tracking API working.
-                    Once I got the basics of 
-
-                    The game world is shrinked down to accommodate for smaller saber movement.
+                
+                    The game world is shrinked down to accommodate for smaller saber movement,
+                    making it essentially a minature version of the game.
                 </p>
+
                 <p>
-                    Biggest issue that I faced was memory leak that I could not explain. 
+                    Using hand-tracking API meant that I had to find a way 
+                    to initialize hand-tracking API from code.
+
+                    I decided to first create a new Unity project 
+                    to understand how the hand-tracking API is working.
+                    On the Unity project, using C#, the hands were
+                    initialized essentially automatically. 
+
+                    Once I understood how the hand-tracking API works, I started to create a mod.
+                    It took me a while to figure out that I had to manually call certain 
+                    initialization functions in order to get the hand-tracking API working.
+                </p>
+                    
+                <p>
+                    The biggest issue that I faced was memory leak that I could not explain. 
                     This is to be expected when making unofficial mods for a game
                     where the tools are not very mature nor well documented. 
 
@@ -125,16 +139,24 @@
                 <h1 id="SubLabel">Flail Saber</h1>
                 <h2>Nunchucks / flails mod</h2>
                 <p style = "text-indent:1cm;">
-                    In this mod the sabers are attached to rope. The rope is simulated using Verlet integration, and it is highly customizable. 
-                    By changing parameters its possible to make rope more elastic or more rigid, longer or shorter, etc.
+                    In this mod the sabers are attached to rope. 
+                    The rope is simulated using Verlet integration, and it is highly customizable. 
+                    By changing parameters its possible to make rope more 
+                    elastic or more rigid, longer or shorter, etc.
                 </p>
                 <p>
+                    <!-- 
+                        In Verlet integration the rope is simulated by moving the rope nodes
+                        by changing their position with respect to the forces acting on them. 
+                        At this point the nodes "do not see" other nodes.
+                    -->
                     In Verlet integration the rope is simulated by moving the rope nodes
-                    by changing their position with respect to the forces acting on them. 
-                    At this point the nodes "do not see" other nodes.
+                    with respect to the forces acting on them. 
+                    At this point the nodes do not interact with each other.
 
-                    After this, constrainted are applied multiple times (10-100 times). 
-                    Each time rope points are moved slighlty to fit their constraints, i.e., the rope is "stretched" or "compressed"
+                    After this, constraints are applied multiple times (10-100 times). 
+                    Each time rope points are moved slighlty to fit their constraints, 
+                    i.e., the rope is "stretched" or "compressed"
                     to fit the length constraint. 
                 </p>
                 <video controls>
