@@ -19,14 +19,14 @@ var min_opacity = 0.3;
 //var min_scale   = 0.9;
 
 window.addEventListener('load', (event) => {
-    initialize();
+    cube_initialize();
 });
 
 window.onscroll = function(e) {
     on_scroll(this.scrollY);
 }
 
-function initialize(){
+function cube_initialize(){
     cubeScene = document.getElementsByClassName("cube3d_scene")[0];
     cube3d    = cubeScene.getElementsByClassName("cube3d")[0];
 
