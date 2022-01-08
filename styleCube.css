@@ -16,6 +16,7 @@
     /* Center the cube */
     margin-top: 25px;
     margin-left: auto;
+    z-index : 1;
 }
 
 .navbar .cube3d_scene:hover{
