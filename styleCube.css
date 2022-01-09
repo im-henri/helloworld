@@ -14,8 +14,8 @@
 
     transition: all 0.15s ease;
     /* Center the cube */
-    margin-top: 25px;
-    margin-left: auto;
+    margin-top: 26px;
+    margin-left: 2%;
     z-index : 1;
 }
 

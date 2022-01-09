@@ -40,30 +40,30 @@ function cube_initialize(){
     cubeScene.addEventListener("mouseenter", function(){
         cubeScene.style.opacity = 1;
         if (scrollPercent > min_click_scroll_up){
-            back.src  = "images/cubeUp.png";
-            front.src = "images/cubeUp.png";
-            left.src  = "images/cubeUp.png";
-            right.src = "images/cubeUp.png";
-            //top.src   = "images/cubeBack.png";
-            //down.src  = "images/cubeBack.png";
+            back.src  = "/images/cubeUp.png";
+            front.src = "/images/cubeUp.png";
+            left.src  = "/images/cubeUp.png";
+            right.src = "/images/cubeUp.png";
+            //top.src   = "/images/cubeBack.png";
+            //down.src  = "/images/cubeBack.png";
         }
         else{
-            back.src  = "images/cubeBack.png";
-            front.src = "images/cubeBack.png";
-            left.src  = "images/cubeBack.png";
-            right.src = "images/cubeBack.png";
-            //top.src   = "images/cubeBack.png";
-            //down.src  = "images/cubeBack.png";
+            back.src  = "/images/cubeBack.png";
+            front.src = "/images/cubeBack.png";
+            left.src  = "/images/cubeBack.png";
+            right.src = "/images/cubeBack.png";
+            //top.src   = "/images/cubeBack.png";
+            //down.src  = "/images/cubeBack.png";
         }
     });
     cubeScene.addEventListener("mouseleave", function(){
         cubeScene.style.opacity = cubeSceneOpacity;
-        back.src  = "images/cubeFace.png";
-        front.src = "images/cubeFace.png";
-        left.src  = "images/cubeFace.png";
-        right.src = "images/cubeFace.png";
-        //top.src   = "images/cubeFace.png";
-        //down.src  = "images/cubeFace.png";
+        back.src  = "/images/cubeFace.png";
+        front.src = "/images/cubeFace.png";
+        left.src  = "/images/cubeFace.png";
+        right.src = "/images/cubeFace.png";
+        //top.src   = "/images/cubeFace.png";
+        //down.src  = "/images/cubeFace.png";
     });
 
     cubeScene.addEventListener("click", function(){
@@ -88,10 +88,10 @@ function on_scroll(value){
 function on_cube_click(){
     if (scrollPercent > min_click_scroll_up){
         window.scrollTo({top: 0, behavior: 'smooth'});
-        back.src  = "images/cubeBack.png";
-        front.src = "images/cubeBack.png";
-        left.src  = "images/cubeBack.png";
-        right.src = "images/cubeBack.png";
+        back.src  = "/images/cubeBack.png";
+        front.src = "/images/cubeBack.png";
+        left.src  = "/images/cubeBack.png";
+        right.src = "/images/cubeBack.png";
     }
     else{
         history.back();

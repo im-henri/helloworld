@@ -45,7 +45,6 @@ body{
     margin: 0;
     padding: 0;
     width: 100%;
-    
     height: 100%;
     
     font-family: 'Courier New', Courier, monospace;
@@ -55,8 +54,8 @@ body{
 }
 
 .container{
-    padding-left: 5%;
-    padding-right: 5%;
+    padding-left: 3%;
+    padding-right: 3%;
     padding-bottom: 70px;
     box-sizing: border-box;
     overflow: hidden;
@@ -190,9 +189,8 @@ iframe {
     /* Center the main content */
     margin-left: auto;
     margin-right: auto;
-    /* padding-edges: 0px; */
-    padding-left: 4%;
-    padding-right: 4%;
+    padding-left: 3%;
+    padding-right: 3%;
     
 }
 

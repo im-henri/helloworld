@@ -1,0 +1,76 @@
+.someTempButton {
+    background-color: #777;
+    color: white;
+    cursor: pointer;
+
+    padding: 10px;
+    width: 100%;
+    
+    text-align: center;
+    font-size: 25px;
+}
+
+.srcButton{
+    border: none;
+
+    border: #141414 solid 1px;
+
+    background-color: #292929;
+    
+    color: var(--clickable_color_normal);
+    
+    text-indent: 10px;
+
+    height: 1.2cm;
+    width: 100%;
+    margin: 1px 0;
+    cursor: pointer;
+    
+    font-family: 'Courier New', Courier, monospace;
+    
+    text-align: left;
+    font-size: var(--main_font_size);
+    font-weight: 500;
+}
+
+.srcButton:hover{
+    color: var(--clickable_color_hover);
+    background-color: #302d2d;
+}
+
+.src_explore_link{
+    border: none;
+
+    border: #141414 solid 1px;
+
+    background-color: #332a27;
+    
+    color: var(--clickable_color_normal);
+    
+    height: 1.2cm;
+    width: 100%;
+    margin: 1px 0;
+    cursor: pointer;
+   
+    /* Round corners */
+    border-radius: 8px;
+
+    font-family: 'Courier New', Courier, monospace;
+    
+    text-align: left;
+    font-size: var(--main_font_size);
+    font-weight: bold;
+    
+}
+
+.src_explore_link:hover{
+    color: var(--clickable_color_hover);
+    background-color: #3d322f;
+    
+}
+
+
+.src_explore_collapsible{
+    /* center the text */
+    font-size: 12px;
+}
