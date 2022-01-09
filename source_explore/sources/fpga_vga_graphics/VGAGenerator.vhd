@@ -1,5 +1,3 @@
--- Created By Henri Haidak
---
 -- VGA signal generator
 -- Outputs: - HCounter(x pos) and VCounter(y pos) 
 --          - HSync and VSync
