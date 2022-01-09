@@ -52,7 +52,7 @@
             <div class="main">
                 <h1 id="Label">FPGA VGA Graphics Controller</h1>
                 <h2>About</h2>
-
+                
                 <p style = "text-indent:1cm;">
                     In this project I created a double buffered VGA graphics design using an Xilinx Spartan-7 series FPGA board.
                     The FPGA board that I have has enough memory for a 1-bit colored 320x240 pixel image. 
@@ -183,36 +183,7 @@
                     This type of drawing would mean that even if the sprite has large bounding box,
                     it only takes up space in memory by the amount of non-zero pixels.
                 </p>
-    
-                <p>
-                    Below is also the top module entity of the VGA_Graphics_top.vhdl.
-                    It met the criteria of having simple interface to the top module.
-                    The next step would be to create simple CPU and 
-                    connect this graphics module to it.
-                </p>
-                <pre class="line-numbers" ><code class="language-vhdl">
-                entity VGA_Graphics_top is
-                Port (  
-                    -- Inputs
-                    fpga_clk             : in STD_LOGIC; -- synthesizing VGA clk
-                    cpu_clk              : in STD_LOGIC;  
-                    
-                    flip_req             : in  STD_LOGIC; -- MUST BE PULSE
-                    destructive_read_req : in  STD_LOGIC; -- flip and clear rgb_buff
-
-                    vga_req_fifo_din     : in  STD_LOGIC_VECTOR(38 DOWNTO 0);
-                    vga_req_fifo_wr_en   : in  STD_LOGIC;
-                    
-                    -- Outputs           
-                    flip_in_progress_out : out STD_LOGIC;
-                    
-                    Colors               : out STD_LOGIC_VECTOR(2 downto 0);
-                    HSync                : out STD_LOGIC;
-                    VSync                : out STD_LOGIC
-                );
-                end VGA_Graphics_top;
-                </code></pre>
-
+                
 
                 <a class="hyperLink" href="source_explore/fpga_vga.html">Explore Source</a>
                
